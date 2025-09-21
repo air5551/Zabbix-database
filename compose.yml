@@ -1,0 +1,32 @@
+services:
+    zabbix-web:
+        image: zabbix/zabbix-web-nginx-pgsql:ol-7.4-latest
+        environment:
+            - PHP_TZ="America/New_York"
+            - ZBX_SERVER_HOST="zabbix-server"
+            - POSTGRES_USER="postgres"
+            - POSTGRES_PASSWORD=${PG_PASS}
+            - DB_SERVER_HOST=zabbix-database
+            - ZBX_SERVER_NAME=Zabbix
+        container_name: zabbix-web-nginx-pgsql
+      
+    
+    db:
+      image: ghcr.io/air5551/zabbix-database:main
+      container_name: zabbix-database 
+      ports:
+        - 5432:5432
+      environment:
+        - POSTGRES_PASSWORD=${PG_PASS}
+    
+    
+    zabbix-server:
+      container_name: zabbix-server
+      image: zabbix/zabbix-server-pgsql:ol-7.4.0
+      environment:
+        - DB_SERVER_HOST=zabbix-database
+        - POSTGRES_PASSWORD=${PG_PASS}
+      ports:
+        - 10051:10051
+        
+    

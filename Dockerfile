@@ -194,8 +194,9 @@ RUN set -eux; \
     rm zabbix-release_latest_7.4+debian13_all.deb; \
     apt-get update; \
     apt-get install -y --no-install-recommends zabbix-sql-scripts; \
-    cp /usr/share/zabbix/sql-scripts/postgresql/server.sql.gz /docker-entrypoint-initdb.d/;
-    
+    cp /usr/share/zabbix/sql-scripts/postgresql/server.sql.gz /docker-entrypoint-initdb.d/; \
+    apt-get remove -y --no-install-recommends ca-certificates wget
+
 
     COPY docker-entrypoint.sh docker-ensure-initdb.sh /usr/local/bin/
 RUN ln -sT docker-ensure-initdb.sh /usr/local/bin/docker-enforce-initdb.sh
