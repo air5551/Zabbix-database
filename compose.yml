@@ -12,7 +12,7 @@ services:
       
     
     db:
-      image: ghcr.io/air5551/zabbix-database:main
+      image: postgres
       restart: "unless-stopped"
       container_name: zabbix-database 
       ports:
