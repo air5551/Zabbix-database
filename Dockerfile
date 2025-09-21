@@ -1,7 +1,6 @@
-#
-# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
-#
-# PLEASE DO NOT EDIT IT DIRECTLY.
+# 
+# 
+# 
 #
 
 FROM debian:trixie-slim
@@ -199,6 +198,7 @@ RUN set -eux; \
 
 
     COPY docker-entrypoint.sh docker-ensure-initdb.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 RUN ln -sT docker-ensure-initdb.sh /usr/local/bin/docker-enforce-initdb.sh
 
  ENTRYPOINT ["docker-entrypoint.sh"]

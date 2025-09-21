@@ -3,7 +3,7 @@
 > [!WARNING]
 > This Repo is for testing and I work on it **WHEN** I feel like it
 
-
+A little note that I only intend to support podman while docker comes second
 
 
 ### Installation
