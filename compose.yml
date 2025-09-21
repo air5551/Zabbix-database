@@ -15,11 +15,14 @@ services:
       image: postgres
       restart: "unless-stopped"
       container_name: zabbix-database 
+      volumes:
+        - ./server.sql.gz:/docker-entrypoint-initdb.d/server.sql.gz:z
       ports:
         - 5432:5432
       environment:
         - POSTGRES_PASSWORD=${PG_PASS}
-    
+        - POSTGRES_DB=zabbix
+      
     
     zabbix-server:
       container_name: zabbix-server
